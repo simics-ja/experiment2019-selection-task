@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>お菓子ログ</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" />
+  <script>
+  function disableBtn(){
+	  var submitbtn = document.getElementById("submit");
+    submitbtn.disabled = true;
+  }
+  </script>
+</head>
+<body>
+  <section class=section>
+    <div class="container">
+      <p class="title has-text-centered">{{ trial_count }} 日目に食べるグミを選んでください。</p>
+      <p>選択肢</p>
+      <hr />
+      <div class="control">
+        <form action="{{base_url()}}/test/{{userid}}/{{video}}/{{ui}}/{{trial_count}}" method="post" onsubmit="disableBtn()">
+          {% for item in items%}
+            {% if item == "t" %}
+              {% set tag = "t" %}
+              {% set name = "つぶぐみ ソーダ" %}
+              {% set imgsrc = "img-tsubu.jpg" %}
+              {% set positive = random(['味の種類が多く変化がある', 'シュワシュワしておいしい', '色とりどりで見ていて楽しい']) %}
+              {% set negative = random(['ケミカルな味がする', '粉っぽい', '食べ物の色じゃない']) %}
+            {% elseif item == "k"%}
+              {% set tag = "k" %}
+              {% set name = "果汁グミ グレープ" %}
+              {% set imgsrc = "img-kaju.jpg" %}
+              {% set positive = random(['果物のような甘さがする', '果物のような弾力がある', 'ぶどうを模した見た目でかわいい']) %}
+              {% set negative = random(['甘すぎる', 'ゴムみたいな食感', 'ベタベタしそうな見た目']) %}
+            {% elseif item == "c"%}
+              {% set tag = "c" %}
+              {% set name = "Cケア ジューシーコラーゲン" %}
+              {% set imgsrc = "img-ccare.jpg" %}
+              {% set positive = random(['甘酸っぱい', 'シャリシャリ食感', '小粒で色とりどりなのが可愛い']) %}
+              {% set negative = random(['酸っぱい', '中身がドロンとして気持ち悪い', 'カラフルな小石']) %}
+            {% elseif item == "n"%}
+              {% set tag = "n" %}
+              {% set name = "忍者めし コーラ" %}
+              {% set imgsrc = "img-ninja.jpg" %}
+              {% set positive = random(['甘すぎず癖になる味', '噛みごたえがある', '大粒で満足感がある']) %}
+              {% set negative = random(['塩っぱい', '硬すぎる', '見た目が地味']) %}
+            {% endif %}
+            <label class="radio">
+              <p>
+                <input type="radio" name="answer" value="{{tag}}" required>
+                {{ name }}
+              </p>
+              <p>
+                <div class="container" style="width: 50px">
+                  <img src="{{base_url()}}/assets/images/{{imgsrc}}">
+                </div>
+                {% if ui == "m" or ui == "p" %}
+                  <p>
+                    感想: <span>{{ positive }}</span>
+                  </p>
+                {% endif %}
+                {% if ui == "m" or ui == "n" %}
+                  <p>
+                    感想: <span>{{ negative }}</span>
+                  </p>
+                {% endif %}
+              </p>
+            </label>
+            <br />
+            <hr />
+          {% endfor %}
+          <p>
+            <input type="hidden" name="userid" value="{{userid}}">
+            <input type="hidden" name="video" value="{{video}}">
+            <input type="hidden" name="ui" value="{{ui}}">
+            <input id="submit" class="button is-info is-pulled-right" type="submit" value="Next">
+          </p>
+        </form>
+      </div>
+    <div>
+  </section>
+</body>
+</html>

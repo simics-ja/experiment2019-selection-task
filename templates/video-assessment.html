@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>動画</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" />
+</head>
+<body>
+  <section class=section>
+    <div class="container has-text-centered is-title">
+      <div class="iframe-wrapper">
+        <h2 class="is-size-5">
+          動画が自動的に停止するまで視聴した後，Googleフォームに回答してください．
+        </h2>
+        <br />
+        <p>
+          <iframe width="340" height="180" src="{{videourl}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <h2 class="is-size-5 has-text-weight-bold has-text-info">動画ID:{{videoid}}</h2>
+        </p>
+        <p>
+          回答し終えたらブラウザの「戻る」は使わず以下の完了ボタンをクリックしてください．
+        </p>
+        <br />
+        <p>
+        <form action="{{base_url()}}/video-list/{{name}}" method="post">
+          <input type="hidden" name="videoid" value="{{videoid}}">
+          <input class="button is-info" type="submit" value="完了">
+        </form>
+        </p>
+        <hr />
+        <p>
+          <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSejQu_4JjWdYptkUJsKTQ3boa1EMuarlcgIcCZ9am4IShVh-w/viewform?embedded=true" width="340" height="3738" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます...</iframe>
+        </p>
+      </div>
+    <div>
+  </section>
+</body>
+</html>

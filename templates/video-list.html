@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>動画</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" />
+</head>
+<body>
+  <section class=section>
+    <div class="container has-text-centered is-title">
+      <div class="iframe-wrapper">
+        <h5 class="has-text-weight-semibold">目的</h5>
+        <p>感情を統制するための映像刺激集を作る</p>
+        <br />
+        <h5 class="has-text-weight-semibold">内容</h5>
+        <p>動画を見て感情に関するアンケートに回答×30セット</p>
+        <br />
+        <h5 class="has-text-weight-semibold">注意</h5>
+        <p>ところどころ刺激的な映像が含まれています．<br />無理だと思ったらやめていただいて結構です．<br />動画は順番に再生せずにランダムにお願いします．<br />音声も聞くようにしてください．</p>
+        <br />
+        <p class="has-text-weight-semibold">未評価動画リスト</p>
+        <ul>
+        {% for num in range(0,29)|shuffle%}
+          <li>
+            {% if num not in logs %}
+            <a href="{{base_url()}}/video-list/{{name}}/{{num}}">
+            動画{{num}}
+            </a>
+            {% endif %}
+          </li>
+        {% endfor %}
+        </ul>
+      </div>
+    <div>
+  </section>
+</body>
+</html>

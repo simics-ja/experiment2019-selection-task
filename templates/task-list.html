@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>タスクリスト</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" />
+</head>
+<body>
+  <section class=section>
+    <div class="container has-text-centered is-title">
+      <p class="title has-text-centered">実験を選んでください。</p>
+      <ul>
+      {% for condition, url in conditions|shuffle %}
+        <li><a href="{{url}}">実験{{condition+1}}</a></li>
+      {% endfor %}
+      </ul>
+    <div>
+  </section>
+</body>
+</html>
